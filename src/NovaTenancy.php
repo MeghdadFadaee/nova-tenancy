@@ -18,7 +18,7 @@ final class NovaTenancy
     /** @var (Closure(Request, Model&NovaTenant): string)|null */
     protected static ?Closure $landingCallback = null;
 
-    /** @var (Closure(Request, Model&NovaTenant): Response)|null */
+    /** @var (Closure(Request, Model&NovaTenant): (Response|null))|null */
     protected static ?Closure $logoResponseCallback = null;
 
     public static function current(): CurrentTenantContext
@@ -70,7 +70,7 @@ final class NovaTenancy
         return '/'.ltrim($path, '/');
     }
 
-    /** @param Closure(Request, Model&NovaTenant): Response $callback */
+    /** @param Closure(Request, Model&NovaTenant): (Response|null) $callback */
     public static function logoResponseUsing(Closure $callback): void
     {
         self::$logoResponseCallback = $callback;

@@ -200,10 +200,12 @@ NovaTenancy::landingUsing(
 );
 
 NovaTenancy::logoResponseUsing(
-    fn (Request $request, Model $tenant): Response => Storage::disk('private')
+    fn (Request $request, Model $tenant): ?Response => Storage::disk('private')
         ->response($tenant->logo_path)
 );
 ```
+
+The logo response callback may return `null` to continue with the tenant URL or configured fallback logo.
 
 `TenantSelected` and `TenantCleared` events are dispatched after changes. English and Persian translations can be published with:
 

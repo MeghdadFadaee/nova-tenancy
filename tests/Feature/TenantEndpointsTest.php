@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Event;
 use MeghdadFadaee\NovaTenancy\Events\TenantCleared;
 use MeghdadFadaee\NovaTenancy\Events\TenantSelected;
+use MeghdadFadaee\NovaTenancy\NovaTenancy;
 use MeghdadFadaee\NovaTenancy\Tests\Fixtures\Tenant;
 use MeghdadFadaee\NovaTenancy\Tests\Fixtures\User;
 
@@ -88,4 +89,20 @@ it('renders a fallback for unsafe logo schemes', function (): void {
         ->get('/testing/current/logo')
         ->assertOk()
         ->assertHeader('Content-Type', 'image/svg+xml; charset=UTF-8');
+});
+
+it('falls through when a custom logo response returns null', function (): void {
+    $user = User::query()->create(['name' => 'Ada']);
+    $tenant = Tenant::query()->create([
+        'user_id' => $user->id,
+        'title' => 'Alpha',
+        'logo_url' => 'https://cdn.example.com/alpha.png',
+    ]);
+
+    NovaTenancy::logoResponseUsing(fn () => null);
+
+    $this->actingAs($user)
+        ->withCookie('nova_tenant', (string) $tenant->id)
+        ->get('/testing/current/logo')
+        ->assertRedirect('https://cdn.example.com/alpha.png');
 });

@@ -59,10 +59,16 @@ describe('TenantAppLogo', () => {
     await flushPromises()
 
     expect(wrapper.get('.nova-tenancy-brand').classes()).not.toContain('h-6')
+    expect(wrapper.get('.nova-tenancy-brand__logo').classes()).not.toContain(
+      'nova-tenancy-brand__logo--fallback'
+    )
 
     await wrapper.get('.nova-tenancy-brand__logo img').trigger('error')
 
     expect(wrapper.find('.nova-tenancy-brand__logo img').exists()).toBe(false)
+    expect(wrapper.get('.nova-tenancy-brand__logo').classes()).toContain(
+      'nova-tenancy-brand__logo--fallback'
+    )
     expect(wrapper.get('.nova-tenancy-brand__initial').text()).toBe('A')
   })
 })

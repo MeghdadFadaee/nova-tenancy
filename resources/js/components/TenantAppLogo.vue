@@ -5,7 +5,12 @@
     :title="title"
     @click.stop.prevent="visitBrandDestination"
   >
-    <span v-if="showLogo" class="nova-tenancy-brand__logo" aria-hidden="true">
+    <span
+      v-if="showLogo"
+      class="nova-tenancy-brand__logo"
+      :class="{ 'nova-tenancy-brand__logo--fallback': logoFailed }"
+      aria-hidden="true"
+    >
       <img
         v-if="!logoFailed"
         :key="logoUrl"
