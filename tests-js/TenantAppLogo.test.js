@@ -51,4 +51,18 @@ describe('TenantAppLogo', () => {
 
     expect(Nova.visit).toHaveBeenCalledWith('/nova-tenancy')
   })
+
+  it('does not inherit Nova logo sizing and falls back when the image fails', async () => {
+    const wrapper = mount(TenantAppLogo, {
+      attrs: { class: 'h-6' },
+    })
+    await flushPromises()
+
+    expect(wrapper.get('.nova-tenancy-brand').classes()).not.toContain('h-6')
+
+    await wrapper.get('.nova-tenancy-brand__logo img').trigger('error')
+
+    expect(wrapper.find('.nova-tenancy-brand__logo img').exists()).toBe(false)
+    expect(wrapper.get('.nova-tenancy-brand__initial').text()).toBe('A')
+  })
 })

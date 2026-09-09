@@ -495,31 +495,50 @@
 .nova-tenancy-brand {
   display: flex;
   min-width: 0;
-  max-width: 13.5rem;
+  max-width: 14.5rem;
   align-items: center;
-  gap: 0.65rem;
+  gap: 0.75rem;
   border: 0;
   padding: 0;
-  color: var(--nt-text);
+  color: rgba(var(--colors-primary-500, 14, 165, 233), 1);
   background: transparent;
   cursor: pointer;
 }
 
 .nova-tenancy-brand__logo {
-  width: 2.5rem;
-  height: 2.5rem;
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
   flex: none;
-  border-radius: 0.5rem;
-  object-fit: cover;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(var(--colors-primary-500, 14, 165, 233), 0.24);
+  border-radius: 0.65rem;
+  color: rgba(var(--colors-primary-600, 2, 132, 199), 1);
+  background: rgba(var(--colors-primary-500, 14, 165, 233), 0.12);
   box-shadow: 0 3px 12px rgba(var(--colors-gray-900, 15, 23, 42), 0.12);
+}
+
+.nova-tenancy-brand__logo img {
+  width: 100%;
+  height: 100%;
+  padding: 0.15rem;
+  object-fit: contain;
+}
+
+.nova-tenancy-brand__initial {
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1;
 }
 
 .nova-tenancy-brand__title {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-size: 0.86rem;
-  font-weight: 750;
+  font-size: 1.125rem;
+  font-weight: 800;
+  line-height: 1.25;
 }
 
 .nova-tenancy-select:focus-visible,
@@ -551,9 +570,18 @@
 .dark .nova-tenancy-search input,
 .dark .nova-tenancy-card__body h2,
 .dark .nova-tenancy-state h2,
-.dark .nova-tenancy-brand,
 .dark .nova-tenancy-pagination button {
   color: var(--nt-text);
+}
+
+.dark .nova-tenancy-brand {
+  color: rgba(var(--colors-primary-400, 56, 189, 248), 1);
+}
+
+.dark .nova-tenancy-brand__logo {
+  border-color: rgba(var(--colors-primary-400, 56, 189, 248), 0.32);
+  color: rgba(var(--colors-primary-300, 125, 211, 252), 1);
+  background: rgba(var(--colors-primary-500, 14, 165, 233), 0.2);
 }
 
 .dark .nova-tenancy-count,
