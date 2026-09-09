@@ -20,7 +20,7 @@ class TenantNotSelected extends RuntimeException implements Responsable
         $destination = $this->selectorUrl();
 
         if ($request instanceof Request && $request->header('X-Inertia') === 'true') {
-            return redirect()->to($destination);
+            return response('', 409, ['X-Inertia-Location' => url($destination)]);
         }
 
         if ($request instanceof Request && $request->expectsJson()) {

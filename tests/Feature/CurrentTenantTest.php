@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use MeghdadFadaee\NovaTenancy\Contracts\CurrentTenantContext;
 use MeghdadFadaee\NovaTenancy\CurrentTenant;
 use MeghdadFadaee\NovaTenancy\Exceptions\TenantNotSelected;
+use MeghdadFadaee\NovaTenancy\Http\Middleware\RequireTenant;
 use MeghdadFadaee\NovaTenancy\NovaTenancy;
 use MeghdadFadaee\NovaTenancy\Providers\UserTenantProvider;
 use MeghdadFadaee\NovaTenancy\Tests\Fixtures\Tenant;
@@ -46,7 +47,7 @@ it('provides scoped string bindings and strict accessors', function (): void {
         ->toThrow(TenantNotSelected::class);
 });
 
-it('redirects an inertia page request to tenant selection', function (): void {
+it('sends an inertia location response to tenant selection', function (): void {
     $request = Request::create('/nova/dashboards/home', server: [
         'HTTP_ACCEPT' => 'text/html, application/xhtml+xml',
         'HTTP_X_INERTIA' => 'true',
@@ -55,8 +56,22 @@ it('redirects an inertia page request to tenant selection', function (): void {
 
     $response = (new TenantNotSelected)->toResponse($request);
 
-    expect($response->getStatusCode())->toBe(302)
-        ->and($response->headers->get('Location'))->toEndWith('/nova/nova-tenancy');
+    expect($response->getStatusCode())->toBe(409)
+        ->and($response->headers->get('X-Inertia-Location'))->toEndWith('/nova/nova-tenancy');
+});
+
+it('returns the selection response directly from tenant middleware', function (): void {
+    $request = Request::create('/nova/dashboards/home', server: [
+        'HTTP_ACCEPT' => 'text/html, application/xhtml+xml',
+        'HTTP_X_INERTIA' => 'true',
+        'HTTP_X_REQUESTED_WITH' => 'XMLHttpRequest',
+    ]);
+
+    $response = (new RequireTenant(app(CurrentTenantContext::class)))
+        ->handle($request, fn () => response()->noContent());
+
+    expect($response->getStatusCode())->toBe(409)
+        ->and($response->headers->get('X-Inertia-Location'))->toEndWith('/nova/nova-tenancy');
 });
 
 it('returns a conflict response for a json api request', function (): void {

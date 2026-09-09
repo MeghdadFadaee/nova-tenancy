@@ -5,6 +5,7 @@ namespace MeghdadFadaee\NovaTenancy\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use MeghdadFadaee\NovaTenancy\Contracts\CurrentTenantContext;
+use MeghdadFadaee\NovaTenancy\Exceptions\TenantNotSelected;
 use Symfony\Component\HttpFoundation\Response;
 
 class RequireTenant
@@ -14,7 +15,9 @@ class RequireTenant
     /** @param Closure(Request): Response $next */
     public function handle(Request $request, Closure $next): Response
     {
-        $this->currentTenant->requireModel();
+        if (! $this->currentTenant->hasTenant()) {
+            return (new TenantNotSelected)->toResponse($request);
+        }
 
         return $next($request);
     }

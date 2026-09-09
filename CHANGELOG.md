@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.3] - 2026-09-09
+
+### Fixed
+
+- Use Inertia's location response for tenant-less SPA visits so Nova navigates to the selector instead of displaying its unrecoverable-error page.
+- Return tenant-selection responses directly from middleware so Nova's exception handler cannot replace them with its generic error page.
+
 ## [1.1.2] - 2026-09-09
 
 ### Changed
@@ -53,6 +60,7 @@ All notable changes to this project will be documented in this file.
 - Optional tenant-aware Nova resource base and reusable context helpers.
 - English and Persian translations.
 
+[1.1.3]: https://github.com/MeghdadFadaee/nova-tenancy/releases/tag/v1.1.3
 [1.1.2]: https://github.com/MeghdadFadaee/nova-tenancy/releases/tag/v1.1.2
 [1.1.0]: https://github.com/MeghdadFadaee/nova-tenancy/releases/tag/v1.1.0
 [1.0.2]: https://github.com/MeghdadFadaee/nova-tenancy/releases/tag/v1.0.2
