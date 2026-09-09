@@ -40,7 +40,7 @@ All notable changes to this project will be documented in this file.
 - Optional tenant-aware Nova resource base and reusable context helpers.
 - English and Persian translations.
 
-[[1.1.0]: https://github.com/MeghdadFadaee/nova-tenancy/releases/tag/v[1.1.0
+[1.1.0]: https://github.com/MeghdadFadaee/nova-tenancy/releases/tag/v1.1.0
 [1.0.2]: https://github.com/MeghdadFadaee/nova-tenancy/releases/tag/v1.0.2
 [1.0.1]: https://github.com/MeghdadFadaee/nova-tenancy/releases/tag/v1.0.1
 [1.0.0]: https://github.com/MeghdadFadaee/nova-tenancy/releases/tag/v1.0.0
