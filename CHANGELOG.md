@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [1.0.1] - 2026-09-09
 
 ### Changed
 
@@ -24,4 +24,5 @@ All notable changes to this project will be documented in this file.
 - Optional tenant-aware Nova resource base and reusable context helpers.
 - English and Persian translations.
 
+[1.0.1]: https://github.com/MeghdadFadaee/nova-tenancy/releases/tag/v1.0.1
 [1.0.0]: https://github.com/MeghdadFadaee/nova-tenancy/releases/tag/v1.0.0
