@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+### Fixed
+
+- Ignore a persisted tenant cookie while Nova is serving an unauthenticated page, such as the login screen.
+
 ## [1.0.0] - 2026-09-09
 
 ### Added

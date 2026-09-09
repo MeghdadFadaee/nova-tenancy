@@ -30,6 +30,15 @@ it('resolves only an accessible tenant from the cookie', function (): void {
     expect((new CurrentTenant(new UserTenantProvider, $request))->model())->toBeNull();
 });
 
+it('ignores a persisted tenant cookie for unauthenticated requests', function (): void {
+    $request = Request::create('/nova/login');
+    $request->cookies->set('nova_tenant', '1');
+
+    $context = new CurrentTenant(new UserTenantProvider, $request);
+
+    expect($context->model())->toBeNull();
+});
+
 it('provides scoped string bindings and strict accessors', function (): void {
     expect(app('CurrentTenantId'))->toBeNull()
         ->and(app('CurrentTenantModel'))->toBeNull()
