@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [1.0.2] - 2026-09-09
+## [1.0.3] - 2026-09-09
 
 ### Changed
 
@@ -11,6 +11,12 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 
 - Prevent Nova's default logo height utility from clipping the tenant brand, preserve complete logo artwork, and show a tenant initial when the logo cannot load.
+
+## [1.0.2] - 2026-09-09
+
+### Changed
+
+- Republished the package without functional changes from version 1.0.1.
 
 ## [1.0.1] - 2026-09-09
 
@@ -34,6 +40,7 @@ All notable changes to this project will be documented in this file.
 - Optional tenant-aware Nova resource base and reusable context helpers.
 - English and Persian translations.
 
+[1.0.3]: https://github.com/MeghdadFadaee/nova-tenancy/releases/tag/v1.0.3
 [1.0.2]: https://github.com/MeghdadFadaee/nova-tenancy/releases/tag/v1.0.2
 [1.0.1]: https://github.com/MeghdadFadaee/nova-tenancy/releases/tag/v1.0.1
 [1.0.0]: https://github.com/MeghdadFadaee/nova-tenancy/releases/tag/v1.0.0
