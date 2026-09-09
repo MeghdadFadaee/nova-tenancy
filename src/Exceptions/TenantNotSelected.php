@@ -17,6 +17,12 @@ class TenantNotSelected extends RuntimeException implements Responsable
 
     public function toResponse($request): Response
     {
+        $destination = $this->selectorUrl();
+
+        if ($request instanceof Request && $request->header('X-Inertia') === 'true') {
+            return redirect()->to($destination);
+        }
+
         if ($request instanceof Request && $request->expectsJson()) {
             return response()->json([
                 'message' => $this->getMessage(),
@@ -24,9 +30,14 @@ class TenantNotSelected extends RuntimeException implements Responsable
             ], 409);
         }
 
+        return redirect()->to($destination);
+    }
+
+    protected function selectorUrl(): string
+    {
         $novaPath = '/'.trim(Nova::path(), '/');
         $toolPath = trim((string) config('nova-tenancy.routes.uri', 'nova-tenancy'), '/');
 
-        return redirect()->to("{$novaPath}/{$toolPath}");
+        return "{$novaPath}/{$toolPath}";
     }
 }

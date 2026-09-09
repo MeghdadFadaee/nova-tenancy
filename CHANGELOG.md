@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [1.1.1] - 2026-09-09
+## [1.1.2] - 2026-09-09
 
 ### Changed
 
@@ -13,6 +13,7 @@ All notable changes to this project will be documented in this file.
 
 - Keep selected tenant branding on Nova's primary color in dark mode.
 - Show successful tenant logos without decorative framing while retaining the framed initial fallback.
+- Redirect tenant-less Inertia page visits to the selector instead of showing Nova's unrecoverable-error modal.
 
 ## [1.1.0] - 2026-09-09
 
@@ -52,7 +53,7 @@ All notable changes to this project will be documented in this file.
 - Optional tenant-aware Nova resource base and reusable context helpers.
 - English and Persian translations.
 
-[1.1.1]: https://github.com/MeghdadFadaee/nova-tenancy/releases/tag/v1.1.1
+[1.1.2]: https://github.com/MeghdadFadaee/nova-tenancy/releases/tag/v1.1.2
 [1.1.0]: https://github.com/MeghdadFadaee/nova-tenancy/releases/tag/v1.1.0
 [1.0.2]: https://github.com/MeghdadFadaee/nova-tenancy/releases/tag/v1.0.2
 [1.0.1]: https://github.com/MeghdadFadaee/nova-tenancy/releases/tag/v1.0.1

@@ -46,6 +46,30 @@ it('provides scoped string bindings and strict accessors', function (): void {
         ->toThrow(TenantNotSelected::class);
 });
 
+it('redirects an inertia page request to tenant selection', function (): void {
+    $request = Request::create('/nova/dashboards/home', server: [
+        'HTTP_ACCEPT' => 'text/html, application/xhtml+xml',
+        'HTTP_X_INERTIA' => 'true',
+        'HTTP_X_REQUESTED_WITH' => 'XMLHttpRequest',
+    ]);
+
+    $response = (new TenantNotSelected)->toResponse($request);
+
+    expect($response->getStatusCode())->toBe(302)
+        ->and($response->headers->get('Location'))->toEndWith('/nova/nova-tenancy');
+});
+
+it('returns a conflict response for a json api request', function (): void {
+    $request = Request::create('/nova-api/resources', server: [
+        'HTTP_ACCEPT' => 'application/json',
+    ]);
+
+    $response = (new TenantNotSelected)->toResponse($request);
+
+    expect($response->getStatusCode())->toBe(409)
+        ->and($response->getContent())->toContain('tenant_selection_required');
+});
+
 it('temporarily activates a tenant and restores the previous context', function (): void {
     $user = User::query()->create(['name' => 'Ada']);
     $first = Tenant::query()->create(['user_id' => $user->id, 'title' => 'First']);
