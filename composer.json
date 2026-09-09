@@ -1,0 +1,74 @@
+{
+    "name": "meghdadfadaee/nova-tenancy",
+    "description": "A framework-agnostic tenant selector, context manager, and dynamic branding tool for Laravel Nova.",
+    "type": "library",
+    "keywords": [
+        "laravel",
+        "nova",
+        "multi-tenancy",
+        "nova-tool",
+        "saas",
+        "tenancy",
+        "tenant-switcher"
+    ],
+    "homepage": "https://github.com/MeghdadFadaee/nova-tenancy",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Meghdad Fadaee"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/MeghdadFadaee/nova-tenancy/issues",
+        "source": "https://github.com/MeghdadFadaee/nova-tenancy"
+    },
+    "require": {
+        "php": "^8.1",
+        "illuminate/database": "^10.48|^11.44|^12.1|^13.0",
+        "illuminate/support": "^10.48|^11.44|^12.1|^13.0",
+        "laravel/nova": "^5.8"
+    },
+    "require-dev": {
+        "laravel/nova-devtool": "^1.9",
+        "laravel/pint": "^1.20",
+        "orchestra/testbench-core": "^8.35|^9.12|^10.1|^11.0",
+        "pestphp/pest": "^2.36|^3.8|^4.0|^5.0",
+        "pestphp/pest-plugin-laravel": "^2.4|^3.0|^4.0|^5.0"
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://nova.laravel.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "MeghdadFadaee\\NovaTenancy\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MeghdadFadaee\\NovaTenancy\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "1.x-dev"
+        },
+        "laravel": {
+            "providers": [
+                "MeghdadFadaee\\NovaTenancy\\NovaTenancyServiceProvider"
+            ]
+        }
+    },
+    "scripts": {
+        "test": "pest",
+        "format": "pint"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        },
+        "sort-packages": true
+    }
+}
