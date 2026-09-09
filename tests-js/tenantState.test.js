@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import {
+  accentContrast,
   currentLogoUrl,
   sameTenant,
   tenantInitial,
@@ -14,7 +15,12 @@ describe('tenant state helpers', () => {
 
   it('builds safe presentation fallbacks', () => {
     expect(tenantInitial(' alpha')).toBe('A')
-    expect(tenantStyle({ accent: null })).toEqual({ '--tenant-accent': '#7c3aed' })
+    expect(tenantStyle({ accent: null })).toEqual({})
+    expect(tenantStyle({ accent: '#ffffff' })).toEqual({
+      '--tenant-accent': '#ffffff',
+      '--tenant-accent-contrast': '#0f172a',
+    })
+    expect(accentContrast('#2563eb')).toBe('#ffffff')
   })
 
   it('creates a cache-busted fixed logo endpoint', () => {

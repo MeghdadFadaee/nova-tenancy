@@ -180,6 +180,8 @@ Selection uses Nova's authenticated request client, stores the authorized tenant
 
 The package overrides Nova's `AppLogo` component with the selected tenant's logo and title. The image source remains the fixed authenticated endpoint `/nova-vendor/nova-tenancy/current/logo`; remote images are redirected to rather than fetched by the server. Only root-relative, HTTP, and HTTPS logo URLs are accepted by the default response and tenant list payload.
 
+The selector inherits Nova's configured `brand.colors` palette, neutral card surfaces, typography, and dark-mode colors. A tenant accent overrides Nova's primary color only for that tenant's identity elements, with an automatically selected foreground color for accessible light and dark accents.
+
 If another package also replaces `AppLogo`, the last component registered by Nova wins.
 
 ## Customization

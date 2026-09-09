@@ -4,9 +4,14 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Changed
+
+- Make the selector palette, overview, surfaces, typography, focus states, and default tenant styling inherit Nova's configured brand and neutral colors.
+
 ### Fixed
 
 - Ignore a persisted tenant cookie while Nova is serving an unauthenticated page, such as the login screen.
+- Keep controls readable when a tenant uses a light accent color such as white.
 
 ## [1.0.0] - 2026-09-09
 

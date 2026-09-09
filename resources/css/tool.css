@@ -1,9 +1,12 @@
 .nova-tenancy-page {
-  --nt-primary: #7c3aed;
-  --nt-primary-strong: #5b21b6;
-  --nt-surface: rgb(255 255 255 / 0.88);
-  --nt-border: rgb(226 232 240 / 0.9);
-  --nt-muted: #64748b;
+  --nt-primary: rgba(var(--colors-primary-500, 14, 165, 233), 1);
+  --nt-primary-soft: rgba(var(--colors-primary-500, 14, 165, 233), 0.12);
+  --nt-primary-strong: rgba(var(--colors-primary-600, 2, 132, 199), 1);
+  --nt-surface: rgba(var(--colors-white, 255, 255, 255), 1);
+  --nt-border: rgba(var(--colors-gray-200, 226, 232, 240), 1);
+  --nt-text: rgba(var(--colors-gray-900, 15, 23, 42), 1);
+  --nt-muted: rgba(var(--colors-gray-500, 100, 116, 139), 1);
+  --nt-shadow: rgba(var(--colors-gray-900, 15, 23, 42), 0.08);
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -19,14 +22,19 @@
   gap: 2rem;
   overflow: hidden;
   border: 1px solid rgb(255 255 255 / 0.16);
-  border-radius: 1.5rem;
+  border-radius: 1rem;
   padding: clamp(1.5rem, 4vw, 3rem);
   color: white;
   background:
-    radial-gradient(circle at 12% 10%, rgb(167 139 250 / 0.48), transparent 34%),
-    radial-gradient(circle at 88% 85%, rgb(56 189 248 / 0.3), transparent 38%),
-    linear-gradient(135deg, #251259 0%, #4c1d95 48%, #172554 100%);
-  box-shadow: 0 24px 60px rgb(49 46 129 / 0.22);
+    radial-gradient(circle at 12% 10%, rgba(var(--colors-primary-400, 56, 189, 248), 0.58), transparent 34%),
+    radial-gradient(circle at 88% 85%, rgba(var(--colors-primary-500, 14, 165, 233), 0.38), transparent 38%),
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--nt-primary-strong) 68%, #0f172a) 0%,
+      var(--nt-primary-strong) 50%,
+      color-mix(in srgb, var(--nt-primary) 48%, #0f172a) 100%
+    );
+  box-shadow: 0 24px 60px color-mix(in srgb, var(--nt-primary) 24%, transparent);
 }
 
 .nova-tenancy-hero::after {
@@ -63,7 +71,7 @@
 
 .nova-tenancy-kicker {
   margin: 0 0 0.65rem;
-  color: #c4b5fd;
+  color: color-mix(in srgb, var(--nt-primary) 24%, white);
   font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.16em;
@@ -81,7 +89,7 @@
 .nova-tenancy-description {
   max-width: 35rem;
   margin: 1rem 0 0;
-  color: rgb(237 233 254 / 0.82);
+  color: rgb(255 255 255 / 0.82);
   font-size: 1rem;
   line-height: 1.7;
 }
@@ -92,7 +100,7 @@
   align-items: center;
   gap: 0.8rem;
   border: 1px solid rgb(255 255 255 / 0.16);
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   padding: 0.8rem;
   background: rgb(255 255 255 / 0.1);
   backdrop-filter: blur(14px);
@@ -111,7 +119,7 @@
 .nova-tenancy-current__logo {
   width: 3rem;
   height: 3rem;
-  color: #4c1d95;
+  color: var(--nt-primary-strong);
   background: white;
 }
 
@@ -130,7 +138,7 @@
 }
 
 .nova-tenancy-current__copy span {
-  color: rgb(237 233 254 / 0.7);
+  color: rgb(255 255 255 / 0.7);
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -149,8 +157,8 @@
   height: 0.55rem;
   border: 2px solid rgb(255 255 255 / 0.8);
   border-radius: 9999px;
-  background: #34d399;
-  box-shadow: 0 0 0 4px rgb(52 211 153 / 0.2);
+  background: rgba(var(--colors-green-400, 74, 222, 128), 1);
+  box-shadow: 0 0 0 4px rgba(var(--colors-green-400, 74, 222, 128), 0.2);
 }
 
 .nova-tenancy-toolbar {
@@ -167,16 +175,16 @@
   align-items: center;
   gap: 0.75rem;
   border: 1px solid var(--nt-border);
-  border-radius: 0.9rem;
+  border-radius: 0.5rem;
   padding-inline: 1rem;
   background: var(--nt-surface);
-  box-shadow: 0 4px 18px rgb(15 23 42 / 0.04);
+  box-shadow: 0 1px 3px var(--nt-shadow);
   transition: border-color 160ms, box-shadow 160ms;
 }
 
 .nova-tenancy-search:focus-within {
-  border-color: rgb(124 58 237 / 0.55);
-  box-shadow: 0 0 0 3px rgb(124 58 237 / 0.12);
+  border-color: rgba(var(--colors-primary-400, 56, 189, 248), 0.7);
+  box-shadow: 0 0 0 3px var(--nt-primary-soft);
 }
 
 .nova-tenancy-search svg {
@@ -192,7 +200,7 @@
   border: 0;
   outline: 0;
   padding: 0.85rem 0;
-  color: #0f172a;
+  color: var(--nt-text);
   background: transparent;
 }
 
@@ -205,7 +213,7 @@
   color: var(--nt-primary-strong);
   font-size: 0.78rem;
   font-weight: 800;
-  background: #ede9fe;
+  background: var(--nt-primary-soft);
 }
 
 .nova-tenancy-grid {
@@ -215,30 +223,31 @@
 }
 
 .nova-tenancy-card {
-  --tenant-accent: #7c3aed;
+  --tenant-accent: var(--nt-primary);
+  --tenant-accent-contrast: white;
   position: relative;
   display: flex;
   min-height: 17rem;
   flex-direction: column;
   overflow: hidden;
   border: 1px solid var(--nt-border);
-  border-radius: 1.25rem;
+  border-radius: 0.5rem;
   padding: 1.25rem;
   background: var(--nt-surface);
-  box-shadow: 0 10px 32px rgb(15 23 42 / 0.055);
+  box-shadow: 0 1px 3px var(--nt-shadow);
   transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
 }
 
 .nova-tenancy-card:hover {
   transform: translateY(-3px);
   border-color: color-mix(in srgb, var(--tenant-accent) 42%, transparent);
-  box-shadow: 0 18px 42px rgb(15 23 42 / 0.1);
+  box-shadow: 0 10px 24px var(--nt-shadow);
 }
 
 .nova-tenancy-card--selected {
   border-color: color-mix(in srgb, var(--tenant-accent) 70%, transparent);
   box-shadow: 0 0 0 2px color-mix(in srgb, var(--tenant-accent) 16%, transparent),
-    0 18px 42px rgb(15 23 42 / 0.09);
+    0 10px 24px var(--nt-shadow);
 }
 
 .nova-tenancy-card__accent {
@@ -258,15 +267,16 @@
 .nova-tenancy-card__logo {
   width: 4rem;
   height: 4rem;
-  color: var(--tenant-accent);
+  color: color-mix(in srgb, var(--tenant-accent) 72%, var(--nt-text));
   font-size: 1.35rem;
+  border-radius: 0.5rem;
   background: color-mix(in srgb, var(--tenant-accent) 11%, white);
 }
 
 .nova-tenancy-badge {
   border-radius: 9999px;
   padding: 0.35rem 0.65rem;
-  color: var(--tenant-accent);
+  color: color-mix(in srgb, var(--tenant-accent) 72%, var(--nt-text));
   font-size: 0.68rem;
   font-weight: 800;
   background: color-mix(in srgb, var(--tenant-accent) 10%, white);
@@ -278,7 +288,7 @@
   height: 1.8rem;
   place-items: center;
   border-radius: 9999px;
-  color: white;
+  color: var(--tenant-accent-contrast);
   background: var(--tenant-accent);
 }
 
@@ -298,9 +308,9 @@
 
 .nova-tenancy-card__body h2 {
   margin: 0;
-  color: #0f172a;
-  font-size: 1.05rem;
-  font-weight: 750;
+  color: var(--nt-text);
+  font-size: 1rem;
+  font-weight: 700;
   line-height: 1.4;
 }
 
@@ -316,7 +326,7 @@
 }
 
 .nova-tenancy-card__body .nova-tenancy-card__key {
-  color: color-mix(in srgb, var(--tenant-accent) 68%, #64748b);
+  color: color-mix(in srgb, var(--tenant-accent) 68%, var(--nt-muted));
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
@@ -328,8 +338,8 @@
   justify-content: center;
   gap: 0.55rem;
   border: 0;
-  border-radius: 0.75rem;
-  font-weight: 750;
+  border-radius: 0.5rem;
+  font-weight: 700;
   cursor: pointer;
   transition: transform 150ms, background-color 150ms, opacity 150ms;
 }
@@ -337,7 +347,7 @@
 .nova-tenancy-select {
   width: 100%;
   min-height: 2.7rem;
-  color: white;
+  color: var(--tenant-accent-contrast);
   background: var(--tenant-accent);
 }
 
@@ -348,7 +358,7 @@
 }
 
 .nova-tenancy-select--selected {
-  color: var(--tenant-accent);
+  color: color-mix(in srgb, var(--tenant-accent) 72%, var(--nt-text));
   background: color-mix(in srgb, var(--tenant-accent) 10%, white);
 }
 
@@ -370,8 +380,8 @@
 .nova-tenancy-spinner {
   width: 1rem;
   height: 1rem;
-  border: 2px solid rgb(255 255 255 / 0.4);
-  border-top-color: white;
+  border: 2px solid color-mix(in srgb, currentColor 40%, transparent);
+  border-top-color: currentColor;
   border-radius: 9999px;
   animation: nova-tenancy-spin 650ms linear infinite;
 }
@@ -385,7 +395,12 @@
   display: block;
   height: 1rem;
   border-radius: 9999px;
-  background: linear-gradient(90deg, #f1f5f9, #e2e8f0, #f1f5f9);
+  background: linear-gradient(
+    90deg,
+    rgba(var(--colors-gray-100, 241, 245, 249), 1),
+    rgba(var(--colors-gray-200, 226, 232, 240), 1),
+    rgba(var(--colors-gray-100, 241, 245, 249), 1)
+  );
   background-size: 220% 100%;
   animation: nova-tenancy-shimmer 1.4s ease infinite;
 }
@@ -406,7 +421,7 @@
   justify-content: center;
   flex-direction: column;
   border: 1px dashed var(--nt-border);
-  border-radius: 1.25rem;
+  border-radius: 0.5rem;
   padding: 2rem;
   text-align: center;
   background: var(--nt-surface);
@@ -418,15 +433,15 @@
   height: 3.5rem;
   place-items: center;
   border-radius: 1rem;
-  color: #be123c;
+  color: rgba(var(--colors-red-700, 185, 28, 28), 1);
   font-size: 1.5rem;
   font-weight: 800;
-  background: #ffe4e6;
+  background: rgba(var(--colors-red-100, 254, 226, 226), 1);
 }
 
 .nova-tenancy-state__icon--empty {
   color: var(--nt-primary);
-  background: #ede9fe;
+  background: var(--nt-primary-soft);
 }
 
 .nova-tenancy-state__icon svg {
@@ -440,7 +455,7 @@
 
 .nova-tenancy-state h2 {
   margin: 1rem 0 0;
-  color: #0f172a;
+  color: var(--nt-text);
   font-size: 1.1rem;
 }
 
@@ -467,7 +482,7 @@
 .nova-tenancy-pagination button {
   border: 1px solid var(--nt-border);
   padding: 0.55rem 0.9rem;
-  color: #334155;
+  color: var(--nt-text);
   background: var(--nt-surface);
 }
 
@@ -485,7 +500,7 @@
   gap: 0.65rem;
   border: 0;
   padding: 0;
-  color: #334155;
+  color: var(--nt-text);
   background: transparent;
   cursor: pointer;
 }
@@ -494,9 +509,9 @@
   width: 2.5rem;
   height: 2.5rem;
   flex: none;
-  border-radius: 0.7rem;
+  border-radius: 0.5rem;
   object-fit: cover;
-  box-shadow: 0 3px 12px rgb(15 23 42 / 0.12);
+  box-shadow: 0 3px 12px rgba(var(--colors-gray-900, 15, 23, 42), 0.12);
 }
 
 .nova-tenancy-brand__title {
@@ -525,9 +540,12 @@
 }
 
 .dark .nova-tenancy-page {
-  --nt-surface: rgb(30 41 59 / 0.84);
-  --nt-border: rgb(71 85 105 / 0.72);
-  --nt-muted: #94a3b8;
+  --nt-primary-soft: rgba(var(--colors-primary-500, 14, 165, 233), 0.2);
+  --nt-surface: rgba(var(--colors-gray-800, 30, 41, 59), 1);
+  --nt-border: rgba(var(--colors-gray-700, 51, 65, 85), 1);
+  --nt-text: rgba(var(--colors-gray-100, 241, 245, 249), 1);
+  --nt-muted: rgba(var(--colors-gray-400, 148, 163, 184), 1);
+  --nt-shadow: rgb(0 0 0 / 0.22);
 }
 
 .dark .nova-tenancy-search input,
@@ -535,23 +553,28 @@
 .dark .nova-tenancy-state h2,
 .dark .nova-tenancy-brand,
 .dark .nova-tenancy-pagination button {
-  color: #f8fafc;
+  color: var(--nt-text);
 }
 
 .dark .nova-tenancy-count,
 .dark .nova-tenancy-state__icon--empty {
-  color: #c4b5fd;
-  background: rgb(91 33 182 / 0.3);
+  color: rgba(var(--colors-primary-400, 56, 189, 248), 1);
+  background: var(--nt-primary-soft);
 }
 
 .dark .nova-tenancy-card__logo,
 .dark .nova-tenancy-badge,
 .dark .nova-tenancy-select--selected {
-  background: color-mix(in srgb, var(--tenant-accent) 22%, #0f172a);
+  background: color-mix(in srgb, var(--tenant-accent) 22%, var(--nt-surface));
 }
 
 .dark .nova-tenancy-card--skeleton span {
-  background: linear-gradient(90deg, #1e293b, #334155, #1e293b);
+  background: linear-gradient(
+    90deg,
+    rgba(var(--colors-gray-800, 30, 41, 59), 1),
+    rgba(var(--colors-gray-700, 51, 65, 85), 1),
+    rgba(var(--colors-gray-800, 30, 41, 59), 1)
+  );
   background-size: 220% 100%;
 }
 
